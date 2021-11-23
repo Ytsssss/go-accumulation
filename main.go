@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "github.com/Ytsssss/go_accumulation/framwork/gin/router"
 
 func main() {
-	fmt.Println("hello go")
+	router.Init()
 }
