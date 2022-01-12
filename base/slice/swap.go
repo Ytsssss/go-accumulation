@@ -1,6 +1,9 @@
 package slice
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/go-redis/redis/v7"
+)
 
 func swapError1() {
 	a := []int{1, 2, 3, 4}
@@ -8,6 +11,11 @@ func swapError1() {
 		fmt.Printf("a: %v\n", a)
 	}(a)
 	a[0], a[1] = a[2], a[4]
+	redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	})
 	// a: [1 2 3 4]
 	// index out of range [4] with length 4
 	// 第一步计算等号左侧索引表达式和取址表达式，计算等号右侧的表达式的值(panic)
