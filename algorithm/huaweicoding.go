@@ -148,3 +148,203 @@ func getUnRepeat() {
 	}
 	fmt.Println(result)
 }
+
+func reverseNum() {
+	var num int
+	fmt.Scanln(&num)
+	if num == 0 {
+		fmt.Println(num)
+		return
+	}
+	for num != 0 {
+		fmt.Print(num % 10)
+		num = num / 10
+	}
+}
+
+func reverseStr() {
+	var str string
+	fmt.Scanln(&str)
+	index := 0
+	for index < len(str) {
+		fmt.Print(string(str[len(str)-index-1]))
+		index++
+	}
+}
+
+func reverseDoc() {
+	var str string
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Scan() {
+		str = scanner.Text()
+	}
+	split := strings.Split(str, " ")
+	index := 0
+	for index < len(split) {
+		fmt.Print(split[len(split)-index-1])
+		fmt.Print(" ")
+		index++
+	}
+}
+
+func sortStr() {
+	var num int
+	var str string
+	fmt.Scanln(&num)
+	strs := make([]string, 0, num)
+	for num > 0 {
+		fmt.Scanln(&str)
+		strs = append(strs, str)
+		num--
+	}
+	sort.Strings(strs)
+	for i := 0; i < len(strs); i++ {
+		fmt.Println(strs[i])
+	}
+}
+
+func countInt() {
+	var num int
+	fmt.Scanln(&num)
+	answer := 0
+	for num > 0 {
+		num = num & (num - 1)
+		answer++
+	}
+	fmt.Println(answer)
+}
+
+func Check() {
+	var str string
+	fmt.Scanln(&str)
+	first, _ := strconv.ParseInt(string(str[0]), 16, 32)
+	second, _ := strconv.ParseInt(string(str[1]), 16, 32)
+	num := first<<4 + second
+	if len(str) == 2 {
+		if num&127 != num {
+			fmt.Println(-1)
+			return
+		}
+		fmt.Println(num & 127)
+		return
+	}
+
+	if len(str) == 4 {
+		if num&223 != num {
+			fmt.Println(-1)
+			return
+		}
+		num = num & 31
+		i := getNum(str, 2)
+		if i == -1 {
+			fmt.Println(-1)
+			return
+		}
+		fmt.Println(num<<6 + i)
+		return
+	}
+	if len(str) == 6 {
+		if num&239 != num {
+			fmt.Println(-1)
+			return
+		}
+		num = num & 15
+		index := 2
+		for index <= 4 {
+			i := getNum(str, index)
+			if i == -1 {
+				fmt.Println(-1)
+				return
+			}
+			num = num<<6 + i
+			index += 2
+		}
+		fmt.Println(num)
+	}
+	if len(str) == 8 {
+		if num&247 != num {
+			fmt.Println(-1)
+			return
+		}
+		num = num & 7
+		index := 2
+		for index <= 6 {
+			i := getNum(str, index)
+			if i == -1 {
+				fmt.Println(-1)
+				return
+			}
+			num = num<<6 + i
+			index += 2
+		}
+		fmt.Println(num)
+	}
+	if len(str) == 10 {
+		if num&251 != num {
+			fmt.Println(-1)
+			return
+		}
+		num = num & 3
+		index := 2
+		for index <= 8 {
+			i := getNum(str, index)
+			if i == -1 {
+				fmt.Println(-1)
+				return
+			}
+			num = num<<6 + i
+			index += 2
+		}
+		fmt.Println(num)
+	}
+	if len(str) == 10 {
+		if num&253 != num {
+			fmt.Println(-1)
+			return
+		}
+		index := 2
+		num = num & 1
+		for index <= 10 {
+			i := getNum(str, index)
+			if i == -1 {
+				fmt.Println(-1)
+				return
+			}
+			num = num<<6 + i
+			index += 2
+		}
+		fmt.Println(num)
+	}
+}
+
+func getNum(str string, i int) int64 {
+	first, _ := strconv.ParseInt(string(str[i]), 16, 32)
+	second, _ := strconv.ParseInt(string(str[i+1]), 16, 32)
+	num := first<<4 + second
+	if num&191 != num {
+		return -1
+	}
+	return num & 63
+}
+
+func getAnswert() {
+	var num int
+	fmt.Scanln(&num)
+	var count int
+	fmt.Scanln(&count)
+	for count > 0 {
+		var a, b int
+		fmt.Scanf("%d>%d", a, b)
+
+	}
+}
+
+type node struct {
+	nums [][]int
+}
+
+func (n *node) union(a, b int) {
+	n.nums[a][b] = 1
+	n.nums[b][a] = 1
+
+}

@@ -1,6 +1,8 @@
 package main
 
-import "github.com/Ytsssss/go_accumulation/algorithm"
+import (
+	"github.com/Ytsssss/go_accumulation/algorithm"
+)
 
 func main() {
 	//router.Init()
@@ -199,7 +201,35 @@ func main() {
 			},
 		},
 	})
-	algorithm.WordBreak("leetcode", []string{"leet", "code"})
+
+	algorithm.NumDecodings("226")
+	algorithm.FindKthLargest([]int{3, 2, 1, 5, 6, 4}, 2)
+	algorithm.NthUglyNumber(10)
+	algorithm.ConvertBST(&algorithm.TreeNode{
+		Val: 3,
+		Left: &algorithm.TreeNode{
+			Val: 2,
+			Left: &algorithm.TreeNode{
+				Val: 1,
+			},
+			Right: &algorithm.TreeNode{
+				Val:   4,
+				Right: nil,
+			},
+		},
+		Right: &algorithm.TreeNode{
+			Val: 5,
+			Right: &algorithm.TreeNode{
+				Val: 6,
+				Right: &algorithm.TreeNode{
+					Val:   7,
+					Right: nil,
+				},
+			},
+		},
+	})
+
+	algorithm.SubarraySum([]int{1}, 0)
 }
 
 //
